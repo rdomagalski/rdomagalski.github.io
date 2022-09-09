@@ -40,12 +40,10 @@
 
     <!-- Global Overlay -->
     <div class="overlay overlay-global">
-      <div class="overlay-inner bg-image-holder bg-cover">
-        <img src="assets/images/photos/photo-6.jpg" alt="">
-      </div>
+      <div class="overlay-inner slide-background"></div>
       <div class="overlay-inner bg-dark opacity-70"></div>
     </div>
-
+	
     <!-- Global Frame -->
     <div class="global-frame border-dark opacity-20">
       <div class="top"></div>
@@ -487,6 +485,28 @@
 
     <!-- Theme JS -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+    // Slideshow Background
+    if ($('.overlay-global .overlay-inner').hasClass('slide-background')) {
+      $('.overlay-global .overlay-inner.slide-background').vegas({
+        preload: true,
+        timer: false,
+        delay: 10000,
+        transition: 'slideLeft2',
+        transitionDuration: 5000,
+        firstTransition: 'none',
+        slides: [
+          { src: 'assets/images/photos/photo-1.jpg' },
+          { src: 'assets/images/photos/photo-2.jpg' },
+          { src: 'assets/images/photos/photo-3.jpg' },
+          { src: 'assets/images/photos/photo-4.jpg' }
+        ],
+        animation: 'kenburns',
+        animationDuration: 5000
+      });
+    }
+    </script>
 
   </body>
 </html>

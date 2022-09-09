@@ -40,12 +40,10 @@
 
     <!-- Global Overlay -->
     <div class="overlay overlay-global">
-      <div class="overlay-inner bg-image-holder bg-cover">
-        <img src="assets/images/photos/photo-6.jpg" alt="">
-      </div>
+      <div class="overlay-inner kenburns-background"></div>
       <div class="overlay-inner bg-dark opacity-70"></div>
     </div>
-
+	
     <!-- Global Frame -->
     <div class="global-frame border-dark opacity-20">
       <div class="top"></div>
@@ -487,6 +485,43 @@
 
     <!-- Theme JS -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+    // Slideshow Background
+    if ($('.overlay-global .overlay-inner').hasClass('kenburns-background')) {
+      var kenburnsDisplayBackdrops = false;
+      var kenburnsBackgrounds = [
+        { src: 'assets/images/photos/photo-1.jpg', valign: 'center' },
+        { src: 'assets/images/photos/photo-2.jpg', valign: 'center' },
+        { src: 'assets/images/photos/photo-3.jpg', valign: 'center' }
+      ];
+
+      $('.overlay-global .overlay-inner.kenburns-background').vegas({
+        preload: true,
+        transition: 'swirlLeft2',
+        transitionDuration: 3000,
+        firstTransition: 'none',
+        timer: false,
+        delay: 6000,
+        slides: kenburnsBackgrounds,
+        walk: function (nb) {
+          if (kenburnsDisplayBackdrops === true) {
+            var backdrop;
+
+            backdrop = backdrops[nb];
+            backdrop.animation = 'kenburns';
+            backdrop.animationDuration = 10000;
+            backdrop.transition = 'fade';
+            backdrop.transitionDuration = 1000;
+
+            $('.overlay-global .overlay-inner.kenburns-background')
+              .vegas('options', 'slides', [ backdrop ])
+              .vegas('next');
+          }
+        }
+      });
+    }
+    </script>
 
   </body>
 </html>
